@@ -35,6 +35,7 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* ── HEADER ── */
@@ -126,6 +127,8 @@
   /* ── HERO ── */
   .hero-wrap {
     border-bottom: 1px solid var(--border);
+    margin: 0 -2.5rem;
+    padding: 0 2.5rem;
   }
 
   .hero {
@@ -871,6 +874,7 @@
   @media (max-width: 1024px) {
     .header-inner, .content { padding-left: 2rem; padding-right: 2rem; }
     .site-footer { padding-left: 2rem; padding-right: 2rem; }
+    .hero-wrap { margin: 0 -2rem; padding: 0 2rem; }
     .hero { padding: 4rem 2rem 3rem; }
     .exp-block { grid-template-columns: 180px 1fr; gap: 2.5rem; }
     .tl-role { font-size: 0.8125rem; }
@@ -881,6 +885,8 @@
   @media (max-width: 768px) {
     .header-inner, .content { padding-left: 1.25rem; padding-right: 1.25rem; }
     .site-footer { padding-left: 1.25rem; padding-right: 1.25rem; flex-direction: column; gap: 0.25rem; text-align: center; }
+    .hero-wrap { margin: 0 -1.25rem; padding: 0 1.25rem; }
+    .exp-location { white-space: normal; }
 
     .hero { padding: 2.5rem 1.25rem 2rem; }
     .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
@@ -937,6 +943,7 @@
   @media (max-width: 480px) {
     .header-inner, .content { padding-left: 1rem; padding-right: 1rem; }
     .site-footer { padding-left: 1rem; padding-right: 1rem; }
+    .hero-wrap { margin: 0 -1rem; padding: 0 1rem; }
 
     .tab-btn { padding: 0 0.65rem; font-size: 0.65rem; }
 
@@ -999,7 +1006,7 @@
   <div class="tab-panel active" id="tab-sobre" role="tabpanel">
 
     <!-- Hero dentro do Sobre -->
-    <div class="hero-wrap" style="margin: 0 -2.5rem; padding: 0 2.5rem;">
+    <div class="hero-wrap">
       <div class="hero" style="padding-left:0; padding-right:0; max-width:100%;">
         <p class="hero-eyebrow">Infrastructure &amp; Security Analyst · Rio de Janeiro</p>
         <h1 class="hero-name">Abner<br><em>Arruda</em></h1>
