@@ -925,8 +925,10 @@
     .vol-head { flex-direction: column; }
 
     /* certificações */
-    .cert-row  { flex-wrap: wrap; gap: 0.75rem; }
-    .cert-date { margin-left: 0; text-align: left; }
+    .cert-row       { display: grid; grid-template-columns: 1.5rem 1fr; grid-template-rows: auto auto; column-gap: 0.75rem; row-gap: 0; align-items: start; padding: 1.25rem 1.25rem; }
+    .cert-num       { grid-column: 1; grid-row: 1; }
+    .cert-row > div:not(.cert-date) { grid-column: 2; grid-row: 1; }
+    .cert-date      { grid-column: 2; grid-row: 2; margin-left: 0; text-align: left; padding-top: 0.4rem; }
 
     /* recomendações */
     .rec-card { padding: 2rem 1.5rem; }
