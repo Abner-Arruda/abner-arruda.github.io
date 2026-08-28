@@ -896,14 +896,14 @@
     .hero-links    { width: 100%; }
     .btn-solid, .btn-ghost { flex: 1; justify-content: center; }
 
-    /* timeline → empilhada verticalmente */
-    .timeline-track          { flex-direction: column; padding-top: 0; gap: 1rem; }
-    .timeline-track::before  { display: none; }
-    .tl-item                 { flex: none; width: 100%; padding: 0; }
-    .tl-item::before         { display: none; }
-    .tl-item::after          { display: none; }
-    .tl-date                 { text-align: left; margin-bottom: 0.5rem; }
-    .tl-body                 { padding: 1rem 1.25rem; }
+    /* timeline → scroll horizontal no mobile */
+    .timeline                { overflow-x: auto; overflow-y: visible; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .timeline::-webkit-scrollbar { display: none; }
+    .timeline-track          { padding-top: 2.75rem; width: max-content; min-width: 100%; scroll-snap-type: x mandatory; }
+    .tl-item                 { flex: none; width: 72vw; max-width: 280px; scroll-snap-align: start; padding: 0 0.6rem; }
+    .tl-item:first-child     { padding-left: 0; }
+    .tl-item:last-child      { padding-right: 1.25rem; }
+    .tl-body                 { padding: 0.875rem 1rem; }
 
     /* sobre */
     .about-lead  { font-size: clamp(1.3rem, 4.5vw, 1.75rem); }
@@ -911,9 +911,9 @@
     .about-card  { padding: 1.5rem 1.5rem; }
 
     /* experiência */
-    .exp-block              { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
+    .exp-block              { grid-template-columns: 120px 1fr; gap: 1.25rem; padding: 2rem 0; }
     .exp-block:first-of-type { padding-top: 0; }
-    .exp-role-title         { font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .exp-role-title         { font-size: 1.35rem; margin-bottom: 1rem; }
     .exp-location           { white-space: normal; }
 
     /* projetos */
