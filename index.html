@@ -1,0 +1,1466 @@
+<title>Abner Arruda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap">
+
+<style>
+  /* ── TOKENS (single dark theme) ── */
+  :root {
+    --bg:        #080808;
+    --surface:   #0d0d0d;
+    --surface-2: #171717;
+    --border:    #1e1e1e;
+    --border-2:  #2e2d2b;
+    --text:      #ece9e3;
+    --muted:     #a8a49e;
+    --faint:     #6a6762;
+    --accent:    #ece9e3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: stretch;
+    min-height: 52px;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 0.875rem;
+  }
+
+  .brand-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .brand-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--faint);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .brand-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* ── TABS ── */
+  .tab-nav {
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex: 1;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    padding: 0 0.9rem;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+    height: 100%;
+  }
+  .tab-btn:hover { color: var(--muted); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--text); }
+
+  /* ── HERO ── */
+  .hero-wrap {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem 3.5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(4.5rem, 13vw, 9.5rem);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 0.88;
+    color: var(--text);
+    margin-bottom: 3rem;
+    text-wrap: balance;
+  }
+
+  .hero-name em {
+    font-style: italic;
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 52ch;
+    line-height: 1.75;
+    text-align: justify;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-size: 0.5625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border-2);
+    padding: 0.6rem 1.1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-size: 0.5625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--text);
+    padding: 0.6rem 1.1rem;
+    transition: opacity 0.2s;
+  }
+  .btn-solid:hover { opacity: 0.8; }
+
+  /* ── CONTENT WRAPPER ── */
+  .content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .tab-panel { display: none; padding: 3.5rem 0 5rem; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION LABEL ── */
+  .sec-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── SOBRE — TIMELINE HORIZONTAL ── */
+  .timeline {
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+
+  .timeline-track {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2.75rem;
+    position: relative;
+  }
+
+  /* linha horizontal */
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 1.1rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-2);
+  }
+
+  .tl-item {
+    position: relative;
+    flex: 1;
+    padding: 0 0.75rem;
+  }
+  .tl-item:first-child { padding-left: 0; }
+  .tl-item:last-child  { padding-right: 0; }
+
+  /* nó na linha */
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    top: -1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--faint);
+  }
+  .tl-item.tl-active::before {
+    background: var(--text);
+    border-color: var(--text);
+    width: 9px;
+    height: 9px;
+    top: -1.85rem;
+  }
+
+  /* haste vertical do nó até o card */
+  .tl-item::after {
+    content: '';
+    position: absolute;
+    top: -1.45rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 1.45rem;
+    background: var(--border);
+  }
+
+  .tl-date {
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--faint);
+    line-height: 1.5;
+    margin-bottom: 0.65rem;
+    text-align: center;
+  }
+
+  .tl-body {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1rem 1rem 1.1rem;
+  }
+  .tl-item.tl-active .tl-body {
+    border-color: var(--border-2);
+  }
+
+  .tl-org {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .tl-role {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 0.55rem;
+  }
+
+  .tl-desc {
+    font-size: 0.8125rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .tl-pill {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--text);
+    color: var(--text);
+  }
+
+  /* ── SOBRE ── */
+  .about-lead {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 34ch;
+    margin-bottom: 2rem;
+  }
+
+  .about-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 72ch;
+    line-height: 1.85;
+    margin-bottom: 3rem;
+  }
+
+  .about-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .about-card {
+    background: var(--surface);
+    padding: 2rem 2.25rem;
+  }
+
+  .about-card-title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-subhead {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    margin-top: 1.375rem;
+    letter-spacing: 0.01em;
+  }
+  .about-subhead:first-of-type { margin-top: 0; }
+
+  .dot-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .dot-list li {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+  .dot-list li::before {
+    content: '•';
+    color: var(--faint);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+  }
+
+  /* ── EXPERIÊNCIA ── */
+  .exp-block {
+    padding: 2.75rem 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3.5rem;
+  }
+  .exp-block:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .exp-block:first-of-type { padding-top: 0; }
+
+  .exp-meta { padding-top: 0.35rem; }
+
+  .exp-company {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-type { font-size: 0.9rem; font-weight: 300; color: var(--faint); margin-bottom: 0.25rem; }
+
+  .exp-period {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+  }
+
+  .exp-location {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--faint);
+    line-height: 1.55;
+    white-space: nowrap;
+  }
+
+  .exp-role-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    margin-bottom: 1.75rem;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .exp-section-head {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .exp-list li {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    text-align: justify;
+  }
+  .exp-list li::before {
+    content: '•';
+    color: var(--faint);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+  }
+
+  .exp-proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+    font-size: 0.5625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border-2);
+    padding: 0.55rem 1rem;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .exp-proj-link:hover { color: var(--text); border-color: var(--text); }
+
+  /* ── PROJETOS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .proj-card {
+    background: var(--surface);
+    padding: 2.75rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: background 0.2s;
+  }
+  .proj-card:hover { background: var(--surface-2); }
+
+  .proj-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .proj-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .proj-org {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+  }
+
+  .proj-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.85;
+    flex: 1;
+  }
+
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--surface-2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  /* ── FORMAÇÃO ── */
+  .edu-stack {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .edu-row {
+    background: var(--surface);
+    padding: 1.75rem 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-row:last-child { border-bottom: none; }
+
+  .edu-inst {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-period { font-size: 0.8125rem; font-weight: 300; color: var(--faint); }
+
+  .status-pill {
+    font-size: 0.4375rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border-2);
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .status-pill.active { border-color: var(--text); color: var(--text); }
+
+  /* Voluntariado */
+  .vol-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .vol-card {
+    background: var(--surface);
+    padding: 2rem 2.25rem;
+  }
+
+  .vol-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .vol-role {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .vol-org { font-size: 0.8125rem; font-weight: 300; color: var(--muted); margin-bottom: 0.2rem; }
+  .vol-period { font-size: 0.75rem; font-weight: 300; color: var(--faint); }
+
+  .vol-desc { font-size: 0.9375rem; font-weight: 300; color: var(--muted); line-height: 1.8; }
+
+  /* ── CERTIFICAÇÕES ── */
+  .cert-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .cert-row {
+    background: var(--surface);
+    padding: 1.375rem 2.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .cert-row:last-child { border-bottom: none; }
+  .cert-row:hover { background: var(--surface-2); }
+
+  .cert-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.9375rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--faint);
+    width: 1.25rem;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cert-name {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.175rem;
+  }
+
+  .cert-issuer { font-size: 0.8125rem; font-weight: 300; color: var(--muted); }
+
+  .cert-date {
+    margin-left: auto;
+    font-size: 0.625rem;
+    font-weight: 300;
+    color: var(--faint);
+    flex-shrink: 0;
+    text-align: right;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* ── RECOMENDAÇÕES ── */
+  .rec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .rec-card { background: var(--surface); padding: 2.5rem 2.25rem; }
+
+  .rec-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .rec-initials {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--border-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .rec-author {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .rec-role-line { font-size: 0.8125rem; font-weight: 300; color: var(--muted); margin-bottom: 0.2rem; line-height: 1.4; }
+  .rec-context { font-size: 0.625rem; font-weight: 300; color: var(--faint); letter-spacing: 0.06em; }
+
+  .rec-text { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.9; }
+  .rec-text p + p { margin-top: 1.125rem; }
+
+  /* ── CONTATO ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    max-width: 860px;
+    margin-bottom: 3rem;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    padding: 1.75rem 2.25rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: background 0.2s;
+  }
+  .contact-card:hover { background: var(--surface-2); }
+  .contact-card[data-static] { cursor: default; }
+  .contact-card[data-static]:hover { background: var(--surface); }
+
+  .contact-kicker {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .contact-val {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .contact-note { font-size: 0.9rem; font-weight: 300; color: var(--muted); }
+
+  .lang-row {
+    display: flex;
+    gap: 1px;
+    max-width: 500px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .lang-card { flex: 1; background: var(--surface); padding: 1.5rem 2.25rem; }
+
+  .lang-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .lang-level { font-size: 0.9rem; font-weight: 300; color: var(--muted); white-space: nowrap; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 1.375rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 400;
+  }
+
+  /* ── FOCUS ── */
+  a:focus-visible, button:focus-visible {
+    outline: 1px solid var(--text);
+    outline-offset: 3px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 780px) {
+    .hero { padding: 3rem 1.5rem 2.5rem; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .about-cols { grid-template-columns: 1fr; }
+    .exp-block { grid-template-columns: 1fr; gap: 0.875rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .lang-row { max-width: 100%; }
+    .header-inner, .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .site-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<!-- ════ HEADER ════ -->
+<header>
+  <div class="header-inner">
+    <nav class="tab-nav" role="tablist" aria-label="Seções do portfólio">
+      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="sobre">Sobre</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="experiencia">Experiência</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="projetos">Projetos</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="formacao">Formação</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="certificacoes">Certificações</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="recomendacoes">Recomendações</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="contato">Contato</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ════ CONTEÚDO ════ -->
+<div class="content">
+
+  <!-- ── SOBRE ── -->
+  <div class="tab-panel active" id="tab-sobre" role="tabpanel">
+
+    <!-- Hero dentro do Sobre -->
+    <div class="hero-wrap" style="margin: 0 -2.5rem; padding: 0 2.5rem;">
+      <div class="hero" style="padding-left:0; padding-right:0; max-width:100%;">
+        <p class="hero-eyebrow">Infrastructure &amp; Security Analyst · Rio de Janeiro</p>
+        <h1 class="hero-name">Abner<br><em>Arruda</em></h1>
+        <div class="hero-bottom">
+          <div class="hero-desc">
+            <p>Profissional de Segurança da Informação com foco em IAM, Blue Team e infraestrutura. Minha abordagem é essencialmente prática: entender como os sistemas funcionam por dentro, automatizar processos, melhorar fluxos e garantir ambientes seguros, confiáveis e disponíveis.</p>
+            <p style="margin-top:0.9rem">Acredito que segurança não é apenas bloquear acessos, é garantir o acesso certo, com menor privilégio, rastreabilidade e responsabilidade. Alinhado às normas ISO/IEC 27001 e à LGPD.</p>
+          </div>
+          <div class="hero-links">
+            <a href="https://www.linkedin.com/in/abner-arruda10" target="_blank" rel="noopener noreferrer" class="btn-solid">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:3.5rem">Sobre mim</p>
+    <p class="about-lead">Usando a tecnologia para tornar o mundo mais seguro com controle, rastreabilidade e responsabilidade.</p>
+
+    <!-- Timeline horizontal com scroll -->
+    <div class="timeline">
+      <div class="timeline-track">
+
+        <div class="tl-item">
+          <p class="tl-date">Abr 2022 — Fev 2025</p>
+          <div class="tl-body">
+            <p class="tl-org">Cefet/RJ</p>
+            <p class="tl-role">Ensino Médio Técnico em Informática</p>
+            <p class="tl-desc">Base técnica em informática e primeiro contato com projetos de extensão e voluntariado.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <p class="tl-date">Dez 2023 — Nov 2024</p>
+          <div class="tl-body">
+            <p class="tl-org">Prefeitura de Nova Iguaçu</p>
+            <p class="tl-role">IT Intern</p>
+            <p class="tl-desc">Suporte técnico, plataforma de denúncias anônimas e presença digital institucional.</p>
+          </div>
+        </div>
+
+        <div class="tl-item tl-active">
+          <p class="tl-date">Mar 2025 — Out 2027</p>
+          <div class="tl-body">
+            <p class="tl-org">Padre Anchieta</p>
+            <p class="tl-role">Tecnólogo em Segurança da Informação</p>
+            <p class="tl-desc">Formação superior com foco em cibersegurança, gestão de riscos e conformidade.</p>
+            <span class="tl-pill">Em andamento</span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <p class="tl-date">Abr 2025 — Out 2025</p>
+          <div class="tl-body">
+            <p class="tl-org">Fresenius Medical Care</p>
+            <p class="tl-role">L2 Support Analyst</p>
+            <p class="tl-desc">Controle de acessos, Okta, FortiClient VPN, KACE e suporte em ambiente Microsoft.</p>
+          </div>
+        </div>
+
+        <div class="tl-item tl-active">
+          <p class="tl-date">Nov 2025 — Presente</p>
+          <div class="tl-body">
+            <p class="tl-org">Open Co</p>
+            <p class="tl-role">Infrastructure &amp; Security Analyst</p>
+            <p class="tl-desc">IAM, Blue Team, endpoints, SGSI (ISO 27001), infraestrutura e projetos de migração.</p>
+            <span class="tl-pill">Posição atual</span>
+          </div>
+        </div>
+
+        <div class="tl-item tl-active">
+          <p class="tl-date">Ago 2026 — Presente</p>
+          <div class="tl-body">
+            <p class="tl-org">IFSP · Google</p>
+            <p class="tl-role">Redes de Computadores &amp; Student Ambassador</p>
+            <p class="tl-desc">Graduação em redes e programa de liderança estudantil Google 2026.</p>
+            <span class="tl-pill">Em andamento</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="about-cols">
+      <div class="about-card">
+        <p class="about-card-title">Segurança da Informação</p>
+
+        <p class="about-subhead">Gestão de Identidade — IAM</p>
+        <ul class="dot-list">
+          <li>Sustentação do programa de IAM — ciclo de vida Joiner, Mover e Leaver + menor privilégio</li>
+          <li>Gestão de requisição de acessos via GLPI</li>
+          <li>Administração do Adaxes/Active Directory híbrido, RBAC, permissões e licenças</li>
+          <li>Integração de identidades com Google Workspace, AWS, GCP, GLPI e SaaS via SSO/MFA</li>
+          <li>Gestão de MFA, políticas de acesso e PAM com CyberArk</li>
+        </ul>
+
+        <p class="about-subhead">Segurança &amp; Vulnerabilidades</p>
+        <ul class="dot-list">
+          <li>Monitoramento de KPIs de segurança</li>
+          <li>Gestão de vulnerabilidades e segurança de endpoints (Windows, Linux e macOS)</li>
+          <li>Gestão e remediação com SentinelOne e Wazuh SIEM</li>
+          <li>Gestão de softwares/SaaS — conformidade e licenciamento</li>
+        </ul>
+
+        <p class="about-subhead">ISO/IEC 27001 &amp; SGSI</p>
+        <ul class="dot-list">
+          <li>Monitoramento de indicadores e suporte a auditorias</li>
+          <li>Controles de infraestrutura física</li>
+          <li>Elaboração, revisão e implementação de políticas, normas, procedimentos e fluxos</li>
+        </ul>
+
+        <p class="about-subhead">Conscientização</p>
+        <ul class="dot-list">
+          <li>Campanhas de phishing, conteúdos educativos e treinamentos de segurança</li>
+        </ul>
+      </div>
+
+      <div class="about-card">
+        <p class="about-card-title">Infraestrutura</p>
+
+        <p class="about-subhead">Gestão de Ativos</p>
+        <ul class="dot-list">
+          <li>Gestão do parque de ativos de TI — disponibilidade, padronização e continuidade</li>
+          <li>Troubleshooting de endpoints; suporte remoto via Gestscreen/TeamViewer</li>
+          <li>Atendimento de chamados via GLPI</li>
+          <li>Gestão dos agentes de RMM e segurança de endpoints (Action1, Wazuh e SentinelOne)</li>
+          <li>Focal point em incidentes críticos e suporte ao Service Desk</li>
+        </ul>
+
+        <p class="about-subhead">Stack &amp; Ferramentas</p>
+        <ul class="dot-list">
+          <li>CyberArk PAM · Active Directory / Adaxes · GLPI</li>
+          <li>Google Workspace · AWS · GCP · SSO / MFA</li>
+          <li>Wazuh SIEM · SentinelOne · Action1 RMM</li>
+          <li>Okta · FortiClient VPN · ServiceNow · KACE</li>
+          <li>AppSheet · WikiJS · Confluence · TeamViewer</li>
+        </ul>
+
+        <p class="about-subhead">Atuação Transversal</p>
+        <ul class="dot-list">
+          <li>Parceria com times multidisciplinares: SRE, DataOps, B2B, Produto, Jurídico, Atendimento, CRM, Service Desk, People, Design, Financeiro e C-Level</li>
+          <li>Fortalecimento da cultura de segurança em toda a organização</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EXPERIÊNCIA ── -->
+  <div class="tab-panel" id="tab-experiencia" role="tabpanel">
+    <p class="sec-label">Experiência Profissional</p>
+
+    <!-- Open Co -->
+    <div class="exp-block">
+      <div class="exp-meta">
+        <p class="exp-company">Open Co</p>
+        <p class="exp-type">Full-time</p>
+        <p class="exp-period">Nov 2025 – Presente<br>10 meses</p>
+        <p class="exp-location">Botafogo, Rio de Janeiro<br>Híbrido</p>
+      </div>
+      <div>
+        <h2 class="exp-role-title">Infrastructure &amp; Security Analyst</h2>
+
+        <p class="exp-section-head">Segurança — Gestão de Identidade (IAM)</p>
+        <ul class="exp-list">
+          <li>Sustentação do programa de IAM — ciclo de vida Joiner, Mover e Leaver + menor privilégio</li>
+          <li>Gestão de requisição de acessos via GLPI</li>
+          <li>Administração do Adaxes/Active Directory híbrido, RBAC, permissões e licenças</li>
+          <li>Integração de identidades com Google Workspace, AWS, GCP, GLPI e SaaS via SSO/MFA</li>
+          <li>Gestão de MFA, políticas de acesso e PAM com CyberArk</li>
+        </ul>
+
+        <p class="exp-section-head">Segurança — Vulnerabilidades &amp; Endpoints</p>
+        <ul class="exp-list">
+          <li>Monitoramento de KPIs e segurança de endpoints Windows, Linux e macOS</li>
+          <li>Gestão e remediação de ataques com SentinelOne e Wazuh SIEM</li>
+          <li>Gestão de softwares/SaaS — segurança, conformidade e licenciamento</li>
+        </ul>
+
+        <p class="exp-section-head">ISO/IEC 27001 &amp; SGSI</p>
+        <ul class="exp-list">
+          <li>Monitoramento de indicadores e suporte a auditorias</li>
+          <li>Controles de infraestrutura física</li>
+          <li>Elaboração, revisão e implementação de políticas, normas, procedimentos e fluxos</li>
+        </ul>
+
+        <p class="exp-section-head">Conscientização</p>
+        <ul class="exp-list">
+          <li>Campanhas de phishing, conteúdos educativos e treinamentos de segurança</li>
+        </ul>
+
+        <p class="exp-section-head">Infraestrutura — Gestão de Ativos</p>
+        <ul class="exp-list">
+          <li>Gestão do parque de ativos de TI — disponibilidade, padronização e continuidade</li>
+          <li>Troubleshooting de endpoints; atendimento via GLPI; suporte remoto via TeamViewer/Gestscreen</li>
+          <li>Gestão dos agentes de RMM e segurança de endpoints (Action1, Wazuh e SentinelOne)</li>
+          <li>Focal point em incidentes críticos e suporte ao Service Desk</li>
+        </ul>
+
+        <p class="exp-section-head">Atuação Transversal</p>
+        <ul class="exp-list">
+          <li>Trabalho junto a equipes multidisciplinares: SRE, DataOps, B2B, Produto, Jurídico, Atendimento, CRM, Service Desk, People, Design, Financeiro e C-Level</li>
+          <li>Fortalecimento da cultura de segurança e proteção das operações em toda a organização</li>
+        </ul>
+
+        <button class="exp-proj-link" onclick="switchTab('projetos')">Ver projetos liderados neste cargo →</button>
+      </div>
+    </div>
+
+    <!-- Fresenius -->
+    <div class="exp-block">
+      <div class="exp-meta">
+        <p class="exp-company">Fresenius Medical Care</p>
+        <p class="exp-type">Full-time</p>
+        <p class="exp-period">Abr 2025 – Out 2025<br>7 meses</p>
+        <p class="exp-location">Barra da Tijuca, Rio de Janeiro<br>Presencial</p>
+      </div>
+      <div>
+        <h2 class="exp-role-title">L2 Support Analyst</h2>
+        <ul class="exp-list">
+          <li>Controle de acessos e permissões administrativas seguindo políticas de Segurança da Informação</li>
+          <li>Configuração e suporte ao Okta para autenticação e acesso aos serviços Microsoft 365 (Teams, OneDrive e Office)</li>
+          <li>Configuração e suporte ao FortiClient VPN — acesso remoto seguro e conformidade com políticas corporativas</li>
+          <li>Apoio na aplicação de políticas de Segurança da Informação e mitigação de vulnerabilidades</li>
+          <li>Resolução de problemas na migração de domínio em ambientes Microsoft — estabilidade e continuidade operacional</li>
+          <li>Gestão de chamados via ServiceNow, incluindo escalonamento para equipes de infraestrutura (N2)</li>
+          <li>Gerenciamento de ativos e inventário através do KACE</li>
+          <li>Criação e implantação de imagens ISO em equipamentos corporativos</li>
+          <li>Recriação de perfis Windows para correção de falhas de carregamento, permissões e desempenho</li>
+          <li>Suporte técnico remoto com AnyDesk e TeamViewer</li>
+          <li>Upgrade de hardware (HD e memória RAM), instalação de drivers e manutenção preventiva em notebooks Dell</li>
+          <li>Configuração de unidades de rede e impressoras locais/rede</li>
+          <li>Suporte ao Power BI e Microsip VoIP</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Prefeitura -->
+    <div class="exp-block">
+      <div class="exp-meta">
+        <p class="exp-company">Prefeitura de Nova Iguaçu</p>
+        <p class="exp-type">Estágio</p>
+        <p class="exp-period">Dez 2023 – Nov 2024<br>1 ano</p>
+        <p class="exp-location">Nova Iguaçu, Rio de Janeiro<br>Híbrido</p>
+      </div>
+      <div>
+        <h2 class="exp-role-title">Information Technology Intern</h2>
+        <ul class="exp-list">
+          <li>Suporte técnico em hardware e software — instalação de sistemas, manutenção e troubleshooting</li>
+          <li>Apoio no desenvolvimento do site de denúncias anônimas — melhoria de processos e comunicação digital</li>
+          <li>Participação na melhoria da presença digital e visibilidade institucional nas redes sociais</li>
+          <li>Desenvolvimento de e-books e materiais digitais de apoio</li>
+          <li>Gerenciamento e organização de resíduos eletrônicos — práticas sustentáveis e controle de descarte</li>
+          <li>Organização e controle de arquivos físicos e digitais</li>
+          <li>Elaboração e apresentação de relatórios operacionais e administrativos</li>
+          <li>Atendimento e esclarecimento de dúvidas para usuários internos e externos</li>
+          <li>Participação em ações de educação ambiental junto à comunidade escolar</li>
+          <li>Suporte operacional em infraestrutura — troca de cabos e apoio técnico em estações de trabalho</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROJETOS ── -->
+  <div class="tab-panel" id="tab-projetos" role="tabpanel">
+    <p class="sec-label">Projetos</p>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Sistema de Gestão de Ativos</h3>
+          <span class="proj-org">Open Co</span>
+        </div>
+        <p class="proj-desc">Desenvolvimento de um sistema interno de gestão de ativos de TI com a plataforma AppSheet (no-code), integrando dados de inventário e automações para controle e rastreabilidade de todo o parque tecnológico da empresa.</p>
+        <div class="proj-tags">
+          <span class="tag">AppSheet</span><span class="tag">No-Code</span><span class="tag">Gestão de Ativos</span><span class="tag">Automação</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Implantação do RMM Action1</h3>
+          <span class="proj-org">Open Co</span>
+        </div>
+        <p class="proj-desc">Liderança na análise, apresentação para stakeholders e implantação da solução de Remote Monitoring &amp; Management Action1, substituindo o ManageEngine. Responsável pela migração em massa de todos os endpoints da organização.</p>
+        <div class="proj-tags">
+          <span class="tag">Action1</span><span class="tag">ManageEngine</span><span class="tag">RMM</span><span class="tag">Migração</span><span class="tag">Endpoints</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Migração ITSM: Jira → GLPI</h3>
+          <span class="proj-org">Open Co</span>
+        </div>
+        <p class="proj-desc">Condução da migração do Jira Service Management para o GLPI, estruturando os portais de Service Desk, Requisição de Acessos e Incidentes de Segurança. O projeto reorganizou os fluxos de atendimento e unificou a gestão de chamados em uma plataforma única.</p>
+        <div class="proj-tags">
+          <span class="tag">GLPI</span><span class="tag">Jira</span><span class="tag">ITSM</span><span class="tag">Service Desk</span><span class="tag">Migração</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Modelagem RBAC: Confluence → WikiJS</h3>
+          <span class="proj-org">Open Co</span>
+        </div>
+        <p class="proj-desc">Modelagem de controle de acesso baseado em funções (RBAC) e aplicação de Segregação de Funções (SoD) na migração da base de conhecimento corporativo do Confluence para o WikiJS, garantindo que cada perfil acesse estritamente o necessário.</p>
+        <div class="proj-tags">
+          <span class="tag">RBAC</span><span class="tag">SoD</span><span class="tag">WikiJS</span><span class="tag">Confluence</span><span class="tag">IAM</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Políticas &amp; Documentação de Segurança</h3>
+          <span class="proj-org">Open Co</span>
+        </div>
+        <p class="proj-desc">Elaboração, revisão e implementação de políticas de segurança da informação, procedimentos operacionais e fluxos de trabalho alinhados à ISO/IEC 27001, com foco em melhoria contínua e automação de processos de segurança.</p>
+        <div class="proj-tags">
+          <span class="tag">ISO 27001</span><span class="tag">Políticas</span><span class="tag">SGSI</span><span class="tag">Documentação</span><span class="tag">Automação</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Site de Denúncias Anônimas</h3>
+          <span class="proj-org">Prefeitura de Nova Iguaçu</span>
+        </div>
+        <p class="proj-desc">Apoio no desenvolvimento de plataforma digital para denúncias anônimas, contribuindo para a modernização dos processos institucionais e melhoria da comunicação digital da Prefeitura Municipal de Nova Iguaçu com a população.</p>
+        <div class="proj-tags">
+          <span class="tag">Desenvolvimento Web</span><span class="tag">Setor Público</span><span class="tag">Privacidade</span><span class="tag">Digital</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FORMAÇÃO ── -->
+  <div class="tab-panel" id="tab-formacao" role="tabpanel">
+    <p class="sec-label">Formação Acadêmica</p>
+    <div class="edu-stack">
+      <div class="edu-row">
+        <div>
+          <p class="edu-inst">Instituto Federal de São Paulo — IFSP</p>
+          <p class="edu-degree">Tecnólogo em Redes de Computadores</p>
+          <p class="edu-period">Ago 2026 – Dez 2028</p>
+        </div>
+        <span class="status-pill active">Em andamento</span>
+      </div>
+      <div class="edu-row">
+        <div>
+          <p class="edu-inst">Centro Universitário Padre Anchieta</p>
+          <p class="edu-degree">Tecnólogo em Segurança da Informação</p>
+          <p class="edu-period">Mar 2025 – Out 2027</p>
+        </div>
+        <span class="status-pill active">Em andamento</span>
+      </div>
+      <div class="edu-row">
+        <div>
+          <p class="edu-inst">Cefet/RJ — Centro Federal de Educação Tecnológica Celso Suckow da Fonseca</p>
+          <p class="edu-degree">Ensino Médio Técnico em Informática</p>
+          <p class="edu-period">Abr 2022 – Fev 2025</p>
+        </div>
+        <span class="status-pill">Concluído</span>
+      </div>
+    </div>
+
+    <p class="sec-label">Voluntariado</p>
+    <div class="vol-stack">
+      <div class="vol-card">
+        <div class="vol-head">
+          <div>
+            <p class="vol-role">Google Student Ambassador</p>
+            <p class="vol-org">Google · Programa Estudantes Embaixadores do Google 2026</p>
+            <p class="vol-period">Ago 2026 – Dez 2026 · 5 meses · Ciência e Tecnologia</p>
+          </div>
+          <span class="status-pill active">Ativo</span>
+        </div>
+        <p class="vol-desc">Comunidade educacional que conecta estudantes de todo o país para trocar experiências e aprendizados práticos sobre o Google Gemini. Uma jornada prática de capacitação digital e liderança que transforma estudantes universitários apaixonados por tecnologia em referências locais de IA.</p>
+      </div>
+
+      <div class="vol-card">
+        <div class="vol-head">
+          <div>
+            <p class="vol-role">Projeto de Extensão PEEXT 2023 — Turing</p>
+            <p class="vol-org">Cefet/RJ</p>
+            <p class="vol-period">Mai 2023 – Dez 2023 · 8 meses · Ciência e Tecnologia</p>
+          </div>
+          <span class="status-pill">Concluído</span>
+        </div>
+        <p class="vol-desc">Suporte técnico à comunidade acadêmica: conserto e manutenção de computadores, restauração de aparelhos e instalação de software para alunos e professores do Cefet/RJ.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CERTIFICAÇÕES ── -->
+  <div class="tab-panel" id="tab-certificacoes" role="tabpanel">
+    <p class="sec-label">Licenças &amp; Certificações</p>
+    <div class="cert-list">
+      <div class="cert-row">
+        <span class="cert-num">1</span>
+        <div>
+          <p class="cert-name">Gestão de Identidades Digitais na Era da IA</p>
+          <p class="cert-issuer">IBSEC — Instituto Brasileiro de Cibersegurança</p>
+        </div>
+        <div class="cert-date">Jul 2026<br>Expira Jul 2029</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">2</span>
+        <div>
+          <p class="cert-name">Introduction to AWS Identity and Access Management (IAM)</p>
+          <p class="cert-issuer">Amazon Web Services (AWS)</p>
+        </div>
+        <div class="cert-date">Mar 2026</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">3</span>
+        <div>
+          <p class="cert-name">The Age of AI: Machine Learning, LLMs, Generative AI, and Agents</p>
+          <p class="cert-issuer">DIO</p>
+        </div>
+        <div class="cert-date">Mar 2026</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">4</span>
+        <div>
+          <p class="cert-name">Fundamentals of Large-Scale Language Models</p>
+          <p class="cert-issuer">DIO</p>
+        </div>
+        <div class="cert-date">Mar 2026</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">5</span>
+        <div>
+          <p class="cert-name">Introduction to Prompt Engineering</p>
+          <p class="cert-issuer">DIO</p>
+        </div>
+        <div class="cert-date">Fev 2026</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">6</span>
+        <div>
+          <p class="cert-name">Cybersecurity: Fundamentals and Integrated Practices</p>
+          <p class="cert-issuer">Alura</p>
+        </div>
+        <div class="cert-date">Mai 2025</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">7</span>
+        <div>
+          <p class="cert-name">Introduction to Cybersecurity</p>
+          <p class="cert-issuer">Cisco Networking Academy</p>
+        </div>
+        <div class="cert-date">Fev 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RECOMENDAÇÕES ── -->
+  <div class="tab-panel" id="tab-recomendacoes" role="tabpanel">
+    <p class="sec-label">Recomendações Recebidas</p>
+    <div class="rec-list">
+
+      <div class="rec-card">
+        <div class="rec-head">
+          <div class="rec-initials">AC</div>
+          <div>
+            <p class="rec-author">Alan Cardoso</p>
+            <p class="rec-role-line">Analista de Segurança da Informação Sênior</p>
+            <p class="rec-context">Trabalharam juntos na equipe de Infra Corporativa · Mar 2026</p>
+          </div>
+        </div>
+        <div class="rec-text">
+          <p>Tive o privilégio de trabalhar ao lado de Abner Arruda na equipe de Infra Corporativa. Nesse período, pude acompanhar de perto sua postura profissional, curiosidade técnica e, principalmente, seu forte engajamento em evoluir na área de Tecnologia e Segurança.</p>
+          <p>Mesmo atuando como profissional júnior em Infra/Service Desk, Abner sempre demonstrou interesse genuíno em Segurança da Informação. Ele constantemente buscava entender melhor os processos e práticas da área, se voluntariando para apoiar demandas relacionadas à segurança sempre que possível, sem deixar de lado suas responsabilidades do dia a dia.</p>
+          <p>Algo que se destaca é sua atitude proativa: quando havia momentos de menor demanda operacional, ele aproveitava para estudar, aprofundar conhecimentos ou trocar ideias com profissionais mais experientes da área. Essa postura demonstra maturidade, disciplina e uma clara intenção de construir experiência prática em Segurança da Informação.</p>
+          <p>Abner é um profissional aplicado, com forte senso de responsabilidade e grande vontade de aprender. Tenho certeza de que, mantendo essa dedicação e consistência, sua trajetória na área de Segurança da Informação será muito bem-sucedida.</p>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div class="rec-head">
+          <div class="rec-initials">JV</div>
+          <div>
+            <p class="rec-author">João Vitor</p>
+            <p class="rec-role-line">Desenvolvedor Full Stack · Next.js · React · TypeScript · Node.js · Supabase · UI/UX Designer</p>
+            <p class="rec-context">Estudaram juntos no Cefet/RJ · Fev 2026</p>
+          </div>
+        </div>
+        <div class="rec-text">
+          <p>Tive a oportunidade de estudar com Abner Arruda no Ensino Médio Técnico em Informática no Cefet. Durante esse período, ele sempre demonstrou comprometimento, responsabilidade e grande interesse em aprofundar seus conhecimentos na área de tecnologia.</p>
+          <p>Abner se destaca pela facilidade em aprender novos conteúdos, pela organização na execução das atividades e pela postura colaborativa em trabalhos em equipe. É uma pessoa dedicada, proativa e que busca constantemente evoluir tanto no aspecto técnico quanto pessoal.</p>
+          <p>Tenho plena confiança no potencial dele e acredito que será um excelente profissional na área de Tecnologia da Informação, agregando valor por onde passar.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CONTATO ── -->
+  <div class="tab-panel" id="tab-contato" role="tabpanel">
+    <p class="sec-label">Contato</p>
+    <div class="contact-grid">
+      <a href="https://www.linkedin.com/in/abner-arruda10" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <span class="contact-kicker">LinkedIn</span>
+        <span class="contact-val">Abner Arruda</span>
+        <span class="contact-note">linkedin.com/in/abner-arruda10</span>
+      </a>
+      <div class="contact-card" data-static>
+        <span class="contact-kicker">E-mail</span>
+        <span class="contact-val">abnergustavoarruda@gmail.com</span>
+        <span class="contact-note">Disponível para contato</span>
+      </div>
+      <div class="contact-card" data-static>
+        <span class="contact-kicker">Localização</span>
+        <span class="contact-val">Rio de Janeiro, Brasil</span>
+        <span class="contact-note">Botafogo · Open Co (Híbrido)</span>
+      </div>
+      <div class="contact-card" data-static>
+        <span class="contact-kicker">Posição atual</span>
+        <span class="contact-val">Open Co · Full-time</span>
+        <span class="contact-note">Infrastructure &amp; Security Analyst</span>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:3rem">Idiomas</p>
+    <div class="lang-row">
+      <div class="lang-card">
+        <p class="lang-name">Português</p>
+        <p class="lang-level">Nativo ou bilíngue</p>
+      </div>
+      <div class="lang-card">
+        <p class="lang-name">English</p>
+        <p class="lang-level">Proficiência básica profissional</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <span>Abner Arruda · 2026</span>
+  <span>Rio de Janeiro, Brasil</span>
+</footer>
+
+<script>
+  const tabBtns   = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  function switchTab(id) {
+    tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    tabPanels.forEach(p => p.classList.remove('active'));
+    const btn   = document.querySelector(`.tab-btn[data-tab="${id}"]`);
+    const panel = document.getElementById(`tab-${id}`);
+    if (btn)   { btn.classList.add('active');   btn.setAttribute('aria-selected', 'true'); }
+    if (panel) { panel.classList.add('active'); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+</script>
