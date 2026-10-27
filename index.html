@@ -224,8 +224,17 @@
     padding: 0 2.5rem;
   }
 
-  .tab-panel { display: none; padding: 3.5rem 0 5rem; }
-  .tab-panel.active { display: block; }
+  /* Página única: todas as seções empilhadas, navegação por rolagem */
+  .tab-panel { display: block; padding: 3.5rem 0 4rem; scroll-margin-top: 52px; }
+  .tab-panel + .tab-panel { border-top: 1px solid var(--border); }
+  #tab-sobre { padding-top: 0; }
+
+  /* Entrada suave de cada seção ao rolar */
+  .tab-panel.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .tab-panel.reveal.in { opacity: 1; transform: none; }
+
+  /* Barra de progresso de leitura sob o menu */
+  .scroll-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--text); transition: width .1s linear; }
 
   /* ── SECTION LABEL ── */
   .sec-label {
@@ -983,41 +992,48 @@
     .about-lead              { font-size: clamp(2rem, 2.5vw, 2.5rem); }
   }
 
+  /* Último card ímpar ocupa a linha inteira no layout de 2 colunas */
+  @media (min-width: 769px) and (max-width: 1599px) {
+    .projects-grid > .proj-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
+    .tab-panel.reveal { opacity: 1; transform: none; }
   }
 </style>
 
 <!-- ════ HEADER ════ -->
 <header>
   <div class="header-inner">
-    <nav class="tab-nav" role="tablist" aria-label="Seções do portfólio">
-      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="sobre">Sobre</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="experiencia">Experiência</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="projetos">Projetos</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="formacao">Formação</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="certificacoes">Certificações</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="recomendacoes">Recomendações</button>
-      <button class="tab-btn"        role="tab" aria-selected="false" data-tab="contato">Contato</button>
+    <nav class="tab-nav" aria-label="Seções do portfólio">
+      <button class="tab-btn active"  data-tab="sobre">Sobre</button>
+      <button class="tab-btn"         data-tab="experiencia">Experiência</button>
+      <button class="tab-btn"         data-tab="projetos">Projetos</button>
+      <button class="tab-btn"         data-tab="formacao">Formação</button>
+      <button class="tab-btn"         data-tab="certificacoes">Certificações</button>
+      <button class="tab-btn"         data-tab="recomendacoes">Recomendações</button>
+      <button class="tab-btn"         data-tab="contato">Contato</button>
     </nav>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </header>
 
 <!-- ════ CONTEÚDO ════ -->
 <div class="content">
 
   <!-- ── SOBRE ── -->
-  <div class="tab-panel active" id="tab-sobre" role="tabpanel">
+  <div class="tab-panel active" id="tab-sobre">
 
     <!-- Hero dentro do Sobre -->
     <div class="hero-wrap">
       <div class="hero" style="padding-left:0; padding-right:0; max-width:100%;">
-        <p class="hero-eyebrow">Infrastructure &amp; Security Analyst · Blue Team · IAM · Rio de Janeiro</p>
+        <p class="hero-eyebrow">Infrastructure &amp; Security Analyst · Blue Team / SOC · IAM · Rio de Janeiro</p>
         <h1 class="hero-name">Abner<br><em>Arruda</em></h1>
         <div class="hero-bottom">
           <div class="hero-desc">
-            <p>Profissional de Segurança da Informação com foco em Blue Team (operações de segurança), IAM e infraestrutura. Minha abordagem é essencialmente prática: entender como os sistemas funcionam por dentro, automatizar processos, melhorar fluxos e garantir ambientes seguros, confiáveis e disponíveis.</p>
-            <p style="margin-top:0.9rem">Acredito que segurança não é apenas bloquear acessos, é garantir o acesso certo, com menor privilégio, rastreabilidade e responsabilidade. Alinhado às normas ISO/IEC 27001 e à LGPD.</p>
+            <p>Profissional de Segurança da Informação com foco em Blue Team / SOC (monitoramento em SIEM, resposta a incidentes e MITRE ATT&amp;CK), IAM e infraestrutura, em fintech regulada com ambiente híbrido AWS, Google Cloud e Microsoft Entra ID. Minha abordagem é essencialmente prática: entender como os sistemas funcionam por dentro, automatizar processos, melhorar fluxos e garantir ambientes seguros, confiáveis e disponíveis.</p>
+            <p style="margin-top:0.9rem">Acredito que segurança não é apenas bloquear acessos, é garantir o acesso certo, com menor privilégio, rastreabilidade e responsabilidade. Alinhado às normas ISO/IEC 27001 e à LGPD. Atualmente estudando para a certificação CompTIA Security+.</p>
           </div>
           <div class="hero-links">
             <a href="https://www.linkedin.com/in/abner-arruda10" target="_blank" rel="noopener noreferrer" class="btn-solid">LinkedIn ↗</a>
@@ -1056,7 +1072,7 @@
           <div class="tl-body">
             <p class="tl-org">Fresenius Medical Care</p>
             <p class="tl-role">L2 Support Analyst</p>
-            <p class="tl-desc">Controle de acessos, Okta, FortiClient VPN, KACE e suporte em ambiente Microsoft.</p>
+            <p class="tl-desc">Controle de acessos, Active Directory, Microsoft 365 / Office 365, Okta (MFA), FortiClient VPN e KACE.</p>
           </div>
         </div>
 
@@ -1075,7 +1091,7 @@
           <div class="tl-body">
             <p class="tl-org">Open Co</p>
             <p class="tl-role">Infrastructure &amp; Security Analyst</p>
-            <p class="tl-desc">Blue Team, IAM, endpoints, gestão de vulnerabilidades, SGSI (ISO 27001) e projetos de migração.</p>
+            <p class="tl-desc">Blue Team (SIEM Wazuh, EDR, MITRE ATT&amp;CK), IAM, gestão de vulnerabilidades, baselines CIS, SGSI (ISO 27001) e projetos de migração.</p>
             <span class="tl-pill">Posição atual</span>
           </div>
         </div>
@@ -1099,12 +1115,14 @@
 
         <p class="about-subhead">Blue Team / Operações de Segurança</p>
         <ul class="dot-list">
-          <li>Monitoramento, triagem e investigação de alertas e incidentes com Wazuh (SIEM), SentinelOne (EDR) e ESET</li>
+          <li>Monitoramento, triagem e investigação de alertas e incidentes com Wazuh (SIEM), SentinelOne (EDR) e ESET (antivírus)</li>
+          <li>Extração de dados do SIEM para identificação de eventos, com alertas mapeados ao MITRE ATT&amp;CK e apoio de consultas SQL</li>
           <li>Investigação de acessos suspeitos e logins anômalos com CyberArk (Idira), Wazuh e SentinelOne</li>
           <li>Administração da proteção de endpoints (Windows, Linux e macOS): políticas, Device Control e tratamento de ameaças</li>
           <li>Gestão de vulnerabilidades com varreduras periódicas (Action1) e acompanhamento da remediação</li>
-          <li>Conformidade de ativos: patches, configurações e criptografia de disco (BitLocker e FileVault)</li>
-          <li>Avaliação de riscos de novas ferramentas, integrações e fornecedores SaaS</li>
+          <li>Baselines de segurança: avaliação de conformidade via Wazuh SCA (CIS Benchmarks), patches e criptografia de disco (BitLocker e FileVault)</li>
+          <li>Assessments de segurança de novas ferramentas, integrações e fornecedores SaaS, com proposição de controles</li>
+          <li>Segurança de e-mail: políticas antispam e antiphishing no Google Workspace</li>
           <li>Administração da segurança das ferramentas corporativas: configurações, autenticação, integrações e controles</li>
           <li>Gestão do fornecedor de redes dos escritórios: firewall FortiGate, redes wireless (Wi-Fi) e SD-WAN</li>
           <li>Monitoramento de KPIs de segurança e proposição de melhorias na postura de segurança com base em riscos e tendências de ameaças</li>
@@ -1139,8 +1157,10 @@
       <div class="about-card">
         <p class="about-card-title">Infraestrutura</p>
 
-        <p class="about-subhead">Gestão de Ativos</p>
+        <p class="about-subhead">Servidores, AD &amp; Ativos</p>
         <ul class="dot-list">
+          <li>Administração de Active Directory híbrido, DNS, DHCP e WSUS</li>
+          <li>Windows Server em AWS EC2 (RDP, SQL Server, pastas e serviços) e servidores Linux</li>
           <li>Gestão do parque de ativos de TI — disponibilidade, padronização e continuidade</li>
           <li>Troubleshooting de endpoints; suporte remoto via Getscreen/TeamViewer</li>
           <li>Atendimento de chamados via GLPI com SLA, RCA e consultas SQL</li>
@@ -1152,9 +1172,11 @@
         <ul class="dot-list">
           <li><span><strong>IAM:</strong> CyberArk (SSO · MFA · PAM) · Active Directory / Adaxes · Microsoft Entra ID · Intune · Okta · RBAC · SoD</span></li>
           <li><span><strong>Cloud &amp; Dados:</strong> AWS IAM · GCP IAM · Secret Manager · Cloud Run · BigQuery · RDS · DocumentDB · SQL Server</span></li>
-          <li><span><strong>Colaboração &amp; SaaS:</strong> Google Workspace · Microsoft 365 · GitHub · Slack</span></li>
-          <li><span><strong>Segurança:</strong> Wazuh SIEM · SentinelOne · ESET · GoPhish · FortiGate · AWS Client VPN · FortiClient VPN</span></li>
-          <li><span><strong>Automação &amp; APIs:</strong> REST APIs · Webhooks · PowerShell · n8n · Slack Workflow Builder · AppSheet · Terraform</span></li>
+          <li><span><strong>Colaboração &amp; SaaS:</strong> Google Workspace · Microsoft 365 / Office 365 · GitHub · Slack</span></li>
+          <li><span><strong>Segurança:</strong> Wazuh (SIEM · HIDS · SCA) · SentinelOne (EDR) · ESET · Action1 · GoPhish · FortiGate · AWS Client VPN · FortiClient VPN</span></li>
+          <li><span><strong>Infraestrutura:</strong> Windows Server · Linux · Active Directory · GPO · DNS · DHCP · WSUS</span></li>
+          <li><span><strong>Frameworks:</strong> MITRE ATT&amp;CK · CIS Benchmarks · ISO/IEC 27001 · ISO/IEC 27002 · LGPD</span></li>
+          <li><span><strong>Automação &amp; APIs:</strong> REST APIs · Webhooks · PowerShell · Python · Bash · SQL · n8n · Slack Workflow Builder · AppSheet · Terraform</span></li>
           <li><span><strong>ITSM &amp; Endpoints:</strong> GLPI · Jira Service Management · ServiceNow · Action1 RMM · KACE</span></li>
           <li><span><strong>Documentação &amp; Suporte:</strong> WikiJS · Confluence · Getscreen · TeamViewer · AnyDesk</span></li>
         </ul>
@@ -1169,7 +1191,7 @@
   </div>
 
   <!-- ── EXPERIÊNCIA ── -->
-  <div class="tab-panel" id="tab-experiencia" role="tabpanel">
+  <div class="tab-panel" id="tab-experiencia">
     <p class="sec-label">Experiência Profissional</p>
 
     <!-- Open Co -->
@@ -1190,12 +1212,15 @@
 
         <p class="exp-section-head">Blue Team / Operações de Segurança</p>
         <ul class="exp-list">
-          <li>Monitoramento, triagem e investigação de alertas e incidentes de segurança com Wazuh (SIEM), SentinelOne (EDR) e ESET</li>
+          <li>Monitoramento, triagem e investigação de alertas e incidentes de segurança com Wazuh (SIEM), SentinelOne (EDR) e ESET (antivírus)</li>
+          <li>Extração de informações do SIEM para identificação e análise de eventos, com alertas mapeados ao MITRE ATT&amp;CK e consultas SQL</li>
           <li>Investigação de acessos suspeitos e logins anômalos com CyberArk (Idira), Wazuh e SentinelOne</li>
           <li>Proteção de endpoints Windows, Linux e macOS: cobertura, políticas, Device Control, quarentenas, falsos positivos e tratamento de ameaças</li>
           <li>Gestão de vulnerabilidades com varreduras periódicas via Action1, priorização por risco e acompanhamento da remediação</li>
+          <li>Avaliação de conformidade de servidores e endpoints com baselines de segurança via Wazuh SCA (CIS Benchmarks)</li>
           <li>Conformidade de ativos: patches, configurações e controle mensal de criptografia de disco (BitLocker e FileVault) no SGSI</li>
-          <li>Avaliação de riscos de novas ferramentas, integrações e fornecedores SaaS, com emissão de parecer técnico</li>
+          <li>Assessments de segurança de novas ferramentas, integrações e fornecedores SaaS, com parecer técnico e proposição de controles</li>
+          <li>Segurança de e-mail: configuração de políticas antispam e antiphishing no Google Workspace</li>
           <li>Administração da segurança das ferramentas corporativas, revisando configurações, autenticação, integrações e controles de segurança</li>
           <li>Gestão do fornecedor terceirizado de redes dos escritórios: firewall FortiGate, redes wireless (Wi-Fi) e SD-WAN</li>
           <li>Proposição de melhorias na postura de segurança com base em riscos, vulnerabilidades e tendências de ameaças</li>
@@ -1222,6 +1247,7 @@
 
         <p class="exp-section-head">Infraestrutura &amp; Automação</p>
         <ul class="exp-list">
+          <li>Administração de Active Directory híbrido, DNS, DHCP e WSUS; Windows Server em AWS EC2 (RDP, SQL Server, pastas e serviços) e servidores Linux</li>
           <li>Gestão do parque de TI e endpoints; troubleshooting N2, análise de causa raiz e consultas SQL; GLPI (ITIL/SLA)</li>
           <li>Gestão de agentes RMM/EDR (Action1, Wazuh, SentinelOne e ESET); ponto focal em incidentes críticos</li>
           <li>Automações via API e PowerShell: sincronização de cargos Slack ↔ Adaxes e integração Slack ↔ GLPI</li>
@@ -1251,19 +1277,12 @@
       <div>
         <h2 class="exp-role-title">L2 Support Analyst</h2>
         <ul class="exp-list">
-          <li>Controle de acessos e permissões administrativas seguindo políticas de Segurança da Informação</li>
-          <li>Configuração e suporte ao Okta para autenticação e acesso aos serviços Microsoft 365 (Teams, OneDrive e Office)</li>
-          <li>Configuração e suporte ao FortiClient VPN — acesso remoto seguro e conformidade com políticas corporativas</li>
-          <li>Apoio na aplicação de políticas de Segurança da Informação e mitigação de vulnerabilidades</li>
-          <li>Resolução de problemas na migração de domínio em ambientes Microsoft — estabilidade e continuidade operacional</li>
-          <li>Gestão de chamados via ServiceNow, incluindo escalonamento para equipes de infraestrutura (N2)</li>
-          <li>Gerenciamento de ativos e inventário através do KACE</li>
-          <li>Criação e implantação de imagens ISO em equipamentos corporativos</li>
-          <li>Recriação de perfis Windows para correção de falhas de carregamento, permissões e desempenho</li>
-          <li>Suporte técnico remoto com AnyDesk e TeamViewer</li>
-          <li>Upgrade de hardware (HD e memória RAM), instalação de drivers e manutenção preventiva em notebooks Dell</li>
-          <li>Configuração de unidades de rede e impressoras locais/rede</li>
-          <li>Suporte ao Power BI e Microsip VoIP</li>
+          <li>Controle de acessos e permissões administrativas conforme políticas de Segurança da Informação, apoiando a prevenção de vulnerabilidades</li>
+          <li>Administração de identidades em Active Directory, Microsoft 365 / Office 365 (contas e licenças) e Okta (MFA)</li>
+          <li>Configuração e suporte ao FortiClient VPN para acesso remoto seguro</li>
+          <li>Suporte na migração de domínio Microsoft (Windows, Microsoft 365, Teams e OneDrive)</li>
+          <li>Chamados no ServiceNow, inventário de ativos no KACE e implantação de imagens de sistema operacional</li>
+          <li>Troubleshooting de estações Windows: perfis, permissões, drivers e suporte remoto</li>
         </ul>
       </div>
     </div>
@@ -1279,23 +1298,16 @@
       <div>
         <h2 class="exp-role-title">Information Technology Intern</h2>
         <ul class="exp-list">
-          <li>Suporte técnico em hardware e software — instalação de sistemas, manutenção e troubleshooting</li>
-          <li>Apoio no desenvolvimento do site de denúncias anônimas — melhoria de processos e comunicação digital</li>
-          <li>Participação na melhoria da presença digital e visibilidade institucional nas redes sociais</li>
-          <li>Desenvolvimento de e-books e materiais digitais de apoio</li>
-          <li>Gerenciamento e organização de resíduos eletrônicos — práticas sustentáveis e controle de descarte</li>
-          <li>Organização e controle de arquivos físicos e digitais</li>
-          <li>Elaboração e apresentação de relatórios operacionais e administrativos</li>
-          <li>Atendimento e esclarecimento de dúvidas para usuários internos e externos</li>
-          <li>Participação em ações de educação ambiental junto à comunidade escolar</li>
-          <li>Suporte operacional em infraestrutura — troca de cabos e apoio técnico em estações de trabalho</li>
+          <li>Suporte técnico em hardware, software e infraestrutura (cabeamento e estações), manutenção de computadores e help desk</li>
+          <li>Desenvolvimento e manutenção do site institucional de denúncias anônimas</li>
+          <li>Atendimento a usuários internos e externos e elaboração de relatórios operacionais</li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- ── PROJETOS ── -->
-  <div class="tab-panel" id="tab-projetos" role="tabpanel">
+  <div class="tab-panel" id="tab-projetos">
     <p class="sec-label">Projetos</p>
     <div class="projects-grid">
 
@@ -1329,6 +1341,17 @@
         <p class="proj-desc">Administração da plataforma GoPhish com montagem, envio e metrificação de campanhas de phishing simulado (abertura, clique e reporte), apoiando treinamentos de conscientização e a redução de riscos de engenharia social entre os colaboradores.</p>
         <div class="proj-tags">
           <span class="tag">GoPhish</span><span class="tag">Phishing</span><span class="tag">Conscientização</span><span class="tag">Métricas</span><span class="tag">Blue Team</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <h3 class="proj-name">Baselines &amp; Conformidade de Endpoints</h3>
+          <span class="proj-org">Open Co</span>
+        </div>
+        <p class="proj-desc">Avaliação contínua de servidores e endpoints contra baselines de segurança com Wazuh SCA (CIS Benchmarks), somada ao controle mensal de criptografia de disco (BitLocker/FileVault), que chegou a 100% dos endpoints em conformidade, e ao monitoramento automatizado da cobertura de agentes RMM/EDR via API com relatórios no Slack.</p>
+        <div class="proj-tags">
+          <span class="tag">Wazuh SCA</span><span class="tag">CIS Benchmarks</span><span class="tag">BitLocker</span><span class="tag">FileVault</span><span class="tag">Hardening</span><span class="tag">Blue Team</span>
         </div>
       </div>
 
@@ -1391,7 +1414,7 @@
   </div>
 
   <!-- ── FORMAÇÃO ── -->
-  <div class="tab-panel" id="tab-formacao" role="tabpanel">
+  <div class="tab-panel" id="tab-formacao">
     <p class="sec-label">Formação Acadêmica</p>
     <div class="edu-stack">
       <div class="edu-row">
@@ -1450,11 +1473,19 @@
   </div>
 
   <!-- ── CERTIFICAÇÕES ── -->
-  <div class="tab-panel" id="tab-certificacoes" role="tabpanel">
+  <div class="tab-panel" id="tab-certificacoes">
     <p class="sec-label">Licenças &amp; Certificações</p>
     <div class="cert-list">
       <div class="cert-row">
         <span class="cert-num">1</span>
+        <div>
+          <p class="cert-name">CompTIA Security+</p>
+          <p class="cert-issuer">CompTIA — estudando para a prova</p>
+        </div>
+        <div class="cert-date">Em andamento<br>2026</div>
+      </div>
+      <div class="cert-row">
+        <span class="cert-num">2</span>
         <div>
           <p class="cert-name">Gestão de Identidades Digitais na Era da IA</p>
           <p class="cert-issuer">IBSEC — Instituto Brasileiro de Cibersegurança</p>
@@ -1462,7 +1493,7 @@
         <div class="cert-date">Concluído<br>Jul 2026 · Expira Jul 2029</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">2</span>
+        <span class="cert-num">3</span>
         <div>
           <p class="cert-name">Introduction to AWS Identity and Access Management (IAM)</p>
           <p class="cert-issuer">Amazon Web Services (AWS)</p>
@@ -1470,7 +1501,7 @@
         <div class="cert-date">Concluído<br>Mar 2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">3</span>
+        <span class="cert-num">4</span>
         <div>
           <p class="cert-name">AWS Cloud Practitioner Essentials</p>
           <p class="cert-issuer">Amazon Web Services (AWS)</p>
@@ -1478,7 +1509,7 @@
         <div class="cert-date">Em andamento</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">4</span>
+        <span class="cert-num">5</span>
         <div>
           <p class="cert-name">Google Cloud Associate Cloud Engineer — Preparatório</p>
           <p class="cert-issuer">Udemy</p>
@@ -1486,7 +1517,7 @@
         <div class="cert-date">Em andamento</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">5</span>
+        <span class="cert-num">6</span>
         <div>
           <p class="cert-name">The Age of AI: Machine Learning, LLMs, Generative AI, and Agents</p>
           <p class="cert-issuer">DIO — Bootcamp de Cibersegurança</p>
@@ -1494,7 +1525,7 @@
         <div class="cert-date">Concluído<br>Mar 2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">6</span>
+        <span class="cert-num">7</span>
         <div>
           <p class="cert-name">Fundamentals of Large-Scale Language Models</p>
           <p class="cert-issuer">DIO — Bootcamp de Cibersegurança</p>
@@ -1502,7 +1533,7 @@
         <div class="cert-date">Concluído<br>Mar 2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">7</span>
+        <span class="cert-num">8</span>
         <div>
           <p class="cert-name">Introduction to Prompt Engineering</p>
           <p class="cert-issuer">DIO</p>
@@ -1510,7 +1541,7 @@
         <div class="cert-date">Concluído<br>Fev 2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">8</span>
+        <span class="cert-num">9</span>
         <div>
           <p class="cert-name">Formação Claude Code 2026: IA com Claude e Cowork</p>
           <p class="cert-issuer">Udemy</p>
@@ -1518,7 +1549,7 @@
         <div class="cert-date">Concluído<br>2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">9</span>
+        <span class="cert-num">10</span>
         <div>
           <p class="cert-name">Jira Software: Projetos Completos com Scrum</p>
           <p class="cert-issuer">Udemy</p>
@@ -1526,7 +1557,7 @@
         <div class="cert-date">Concluído<br>2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">10</span>
+        <span class="cert-num">11</span>
         <div>
           <p class="cert-name">Ágil Scrum — O Guia Prático e Definitivo</p>
           <p class="cert-issuer">Udemy</p>
@@ -1534,7 +1565,7 @@
         <div class="cert-date">Concluído<br>2026</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">11</span>
+        <span class="cert-num">12</span>
         <div>
           <p class="cert-name">Formação Linux Completa: Do Básico ao Avançado</p>
           <p class="cert-issuer">Udemy</p>
@@ -1542,7 +1573,7 @@
         <div class="cert-date">Em andamento</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">12</span>
+        <span class="cert-num">13</span>
         <div>
           <p class="cert-name">Cybersecurity: Fundamentals and Integrated Practices</p>
           <p class="cert-issuer">Alura</p>
@@ -1550,7 +1581,7 @@
         <div class="cert-date">Concluído<br>Mai 2025</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">13</span>
+        <span class="cert-num">14</span>
         <div>
           <p class="cert-name">Introduction to Cybersecurity</p>
           <p class="cert-issuer">Cisco Networking Academy</p>
@@ -1558,7 +1589,7 @@
         <div class="cert-date">Concluído<br>Fev 2025</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">14</span>
+        <span class="cert-num">15</span>
         <div>
           <p class="cert-name">Linux</p>
           <p class="cert-issuer">Cisco Networking Academy</p>
@@ -1566,7 +1597,7 @@
         <div class="cert-date">Concluído</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">15</span>
+        <span class="cert-num">16</span>
         <div>
           <p class="cert-name">Python para Análise de Dados e Automação</p>
           <p class="cert-issuer">Hashtag Treinamentos</p>
@@ -1574,7 +1605,7 @@
         <div class="cert-date">Concluído<br>2025</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">16</span>
+        <span class="cert-num">17</span>
         <div>
           <p class="cert-name">Inteligência Artificial para Simplificar o Dia a Dia</p>
           <p class="cert-issuer">ENAP — Escola Nacional de Administração Pública</p>
@@ -1582,7 +1613,7 @@
         <div class="cert-date">Concluído<br>2025</div>
       </div>
       <div class="cert-row">
-        <span class="cert-num">17</span>
+        <span class="cert-num">18</span>
         <div>
           <p class="cert-name">Suporte Técnico na Prática</p>
           <p class="cert-issuer">Udemy</p>
@@ -1593,7 +1624,7 @@
   </div>
 
   <!-- ── RECOMENDAÇÕES ── -->
-  <div class="tab-panel" id="tab-recomendacoes" role="tabpanel">
+  <div class="tab-panel" id="tab-recomendacoes">
     <p class="sec-label">Recomendações Recebidas</p>
     <div class="rec-list">
 
@@ -1650,7 +1681,7 @@
   </div>
 
   <!-- ── CONTATO ── -->
-  <div class="tab-panel" id="tab-contato" role="tabpanel">
+  <div class="tab-panel" id="tab-contato">
     <p class="sec-label">Contato</p>
     <div class="contact-grid">
       <a href="https://www.linkedin.com/in/abner-arruda10" target="_blank" rel="noopener noreferrer" class="contact-card">
@@ -1679,11 +1710,11 @@
     <div class="lang-row">
       <div class="lang-card">
         <p class="lang-name">Português</p>
-        <p class="lang-level">Nativo ou bilíngue</p>
+        <p class="lang-level">Nativo</p>
       </div>
       <div class="lang-card">
-        <p class="lang-name">English</p>
-        <p class="lang-level">Profissional (Professional Working)</p>
+        <p class="lang-name">Inglês</p>
+        <p class="lang-level">Intermediário (em aprimoramento com aulas particulares)</p>
       </div>
     </div>
   </div>
@@ -1699,23 +1730,60 @@
 <script>
   const tabBtns   = document.querySelectorAll('.tab-btn');
   const tabPanels = document.querySelectorAll('.tab-panel');
+  const header    = document.querySelector('header');
+  const progress  = document.querySelector('.scroll-progress');
 
+  // Clique no menu (ou em "Ver projetos…"): rola suavemente até a seção
   function switchTab(id) {
-    tabBtns.forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    tabPanels.forEach(p => p.classList.remove('active'));
-    const btn   = document.querySelector(`.tab-btn[data-tab="${id}"]`);
     const panel = document.getElementById(`tab-${id}`);
-    if (btn)   { btn.classList.add('active');   btn.setAttribute('aria-selected', 'true'); }
-    if (panel) { panel.classList.add('active'); }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!panel) return;
+    if (id === 'sobre') window.scrollTo({ top: 0, behavior: 'smooth' });
+    else panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', `#${id}`);
+  }
+  tabBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+
+  function setActive(id) {
+    tabBtns.forEach(b => {
+      const on = b.dataset.tab === id;
+      b.classList.toggle('active', on);
+      if (on) { b.setAttribute('aria-current', 'true'); b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
+      else b.removeAttribute('aria-current');
+    });
   }
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-  });
+  // Menu acompanha a rolagem e barra de progresso
+  function onScroll() {
+    const line = header.offsetHeight + window.innerHeight * 0.25;
+    let current = tabPanels[0].id;
+    tabPanels.forEach(p => { if (p.getBoundingClientRect().top <= line) current = p.id; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4)
+      current = tabPanels[tabPanels.length - 1].id;
+    setActive(current.replace('tab-', ''));
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  }
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(() => { onScroll(); ticking = false; }); ticking = true; }
+  }, { passive: true });
+  window.addEventListener('resize', onScroll);
+
+  // Seções aparecem com um fade ao entrar na tela
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.08 });
+    tabPanels.forEach((p, i) => { if (i > 0) { p.classList.add('reveal'); io.observe(p); } });
+  }
+
+  // Link direto (ex.: abner-arruda.github.io/#projetos)
+  const start = location.hash.replace('#', '');
+  if (start && document.getElementById(`tab-${start}`)) {
+    document.getElementById(`tab-${start}`).classList.add('in');
+    setTimeout(() => document.getElementById(`tab-${start}`).scrollIntoView({ block: 'start' }), 50);
+  }
+  onScroll();
 </script>
 </body>
 </html>
