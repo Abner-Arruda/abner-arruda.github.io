@@ -4,12 +4,12 @@ export const PHONE = "(21) 98594-0662";
 export const PHONE_TEL = "+5521985940662";
 
 export const timeline = [
-  { when: "Abr 2022 — Fev 2025", org: "Cefet/RJ", role: "Ensino Médio Técnico em Informática", desc: "Base técnica em informática e primeiro contato com projetos de extensão e voluntariado." },
-  { when: "Dez 2023 — Nov 2024", org: "Prefeitura de Nova Iguaçu", role: "IT Intern", desc: "Suporte técnico, plataforma de denúncias anônimas e presença digital institucional." },
-  { when: "Dez 2024 — Nov 2025", org: "Fresenius Medical Care", role: "L2 Support Analyst", desc: "Controle de acessos, Active Directory, Microsoft 365 / Office 365, Okta (MFA), FortiClient VPN e KACE." },
-  { when: "Mar 2025 — Set 2026", org: "Grupo Anchieta", role: "Tecnólogo em Segurança da Informação", desc: "Primeira formação superior em Cibersegurança; trancado para migrar ao bacharelado no Instituto Infnet.", tag: "Trancado" },
-  { when: "Nov 2025 — Presente", org: "Open Co", role: "Infrastructure & Security Analyst", desc: "Blue Team (SIEM Wazuh, EDR, MITRE ATT&CK), IAM, gestão de vulnerabilidades, baselines CIS, SGSI (ISO 27001) e projetos de migração.", tag: "Posição atual" },
-  { when: "Out 2026 — Out 2030", org: "Instituto Infnet", role: "Bacharelado em Engenharia de Software", desc: "Ênfase em Cibersegurança.", tag: "Em andamento" },
+  { when: "Abr 2022 — Fev 2025", kind: "edu", org: "Cefet/RJ", role: "Ensino Médio Técnico em Informática", desc: "Base técnica em informática e primeiro contato com projetos de extensão e voluntariado." },
+  { when: "Dez 2023 — Nov 2024", kind: "work", org: "Prefeitura de Nova Iguaçu", role: "IT Intern", desc: "Suporte técnico, plataforma de denúncias anônimas e presença digital institucional." },
+  { when: "Dez 2024 — Nov 2025", kind: "work", org: "Fresenius Medical Care", role: "L2 Support Analyst", desc: "Controle de acessos, Active Directory, Microsoft 365 / Office 365, Okta (MFA), FortiClient VPN e KACE." },
+  { when: "Mar 2025 — Set 2026", kind: "edu", org: "Grupo Anchieta", role: "Tecnólogo em Segurança da Informação", desc: "Primeira formação superior em Cibersegurança; trancado para migrar ao bacharelado no Instituto Infnet.", tag: "Trancado" },
+  { when: "Nov 2025 — Presente", kind: "work", org: "Open Co", role: "Infrastructure & Security Analyst", desc: "Blue Team (SIEM Wazuh, EDR, MITRE ATT&CK), IAM, gestão de vulnerabilidades, baselines CIS, SGSI (ISO 27001) e projetos de migração.", tag: "Posição atual" },
+  { when: "Out 2026 — Out 2030", kind: "edu", org: "Instituto Infnet", role: "Bacharelado em Engenharia de Software", desc: "Ênfase em Cibersegurança.", tag: "Em andamento" },
 ];
 
 export const stack: [string, string][] = [

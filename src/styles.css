@@ -50,3 +50,8 @@
 @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @theme inline { --color-navy: var(--navy); }
 :root { --navy: oklch(0.28 0.09 262); }
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}

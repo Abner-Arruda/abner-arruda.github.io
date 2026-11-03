@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Mail, ArrowRight, Phone, Languages } from "lucide-react";
+import { useRef } from "react";
+import { Linkedin, Mail, ArrowRight, Phone, Languages, GraduationCap, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 import photo from "@/assets/abner-photo.jpg";
 import {
   LINKEDIN, EMAIL, PHONE, PHONE_TEL, timeline, competencies, jobs, projects, education, volunteering, certs, recommendations,
@@ -51,6 +52,57 @@ function Bullets({ items }: { items: string[] }) {
 
 const card = "rounded-lg border border-border bg-card p-6";
 
+function Timeline() {
+  const track = useRef<HTMLOListElement>(null);
+  const scroll = (dir: number) => track.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
+  const arrow = "grid h-9 w-9 place-items-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:border-accent hover:text-accent";
+  return (
+    <div className="mt-14">
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <p className="text-sm text-muted-foreground">Minha trajetória, da formação técnica até hoje.</p>
+        <div className="flex gap-2">
+          <button type="button" onClick={() => scroll(-1)} aria-label="Voltar" className={arrow}><ChevronLeft className="h-4 w-4" /></button>
+          <button type="button" onClick={() => scroll(1)} aria-label="Avançar" className={arrow}><ChevronRight className="h-4 w-4" /></button>
+        </div>
+      </div>
+      <ol ref={track} className="no-scrollbar -mx-6 flex snap-x snap-mandatory overflow-x-auto scroll-px-6 px-6 pb-2">
+        {timeline.map((t, i) => {
+          const Icon = t.kind === "edu" ? GraduationCap : Briefcase;
+          const current = t.tag === "Posição atual" || t.tag === "Em andamento";
+          const first = i === 0;
+          const last = i === timeline.length - 1;
+          return (
+            <li key={t.org + t.when} className="relative w-72 shrink-0 snap-start pr-5 sm:w-80">
+              {/* trecho da linha horizontal */}
+              <span
+                aria-hidden
+                className={`absolute top-5 h-px ${first ? "left-5" : "left-0"} ${last ? "w-5" : "right-0"} ${
+                  last ? "bg-accent/70" : "bg-gradient-to-r from-border via-accent/50 to-border"
+                }`}
+              />
+              <span
+                aria-hidden
+                className={`relative z-10 grid h-10 w-10 place-items-center rounded-full border bg-background ${
+                  current ? "border-accent text-accent shadow-[0_0_24px_-4px_var(--accent)]" : "border-border text-muted-foreground"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+              </span>
+              <p className="mt-4 text-xs text-accent">{t.when}</p>
+              <div className={`${card} mt-3 h-[calc(100%-5.5rem)]`}>
+                <h3 className="font-semibold">{t.org}</h3>
+                <p className="text-sm">{t.role}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
+                {t.tag && <div className="mt-3"><Badge>{t.tag}</Badge></div>}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen">
@@ -95,17 +147,7 @@ function Index() {
         <Section id="sobre" label="Sobre mim">
           <h2 className="max-w-3xl text-3xl font-semibold leading-snug md:text-4xl">Usando a tecnologia para tornar o mundo mais seguro com controle, rastreabilidade e responsabilidade.</h2>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {timeline.map((t) => (
-              <div key={t.org + t.when} className={card}>
-                <p className="text-xs text-accent">{t.when}</p>
-                <h3 className="mt-2 font-semibold">{t.org}</h3>
-                <p className="text-sm">{t.role}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
-                {t.tag && <div className="mt-3"><Badge>{t.tag}</Badge></div>}
-              </div>
-            ))}
-          </div>
+          <Timeline />
 
           <div className="mt-14 grid items-start gap-4 lg:grid-cols-2">
             {competencies.map((c) => (
