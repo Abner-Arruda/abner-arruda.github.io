@@ -124,8 +124,9 @@ function Index() {
               Olá, eu sou<br /><span className="text-accent">Abner Arruda</span>
             </h1>
             <div className="mt-6 max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground">
-              <p>Profissional de Segurança da Informação com foco em Blue Team / SOC (monitoramento em SIEM, resposta a incidentes e MITRE ATT&amp;CK), IAM e infraestrutura, em fintech regulada com ambiente híbrido AWS, Google Cloud e Microsoft Entra ID. Minha abordagem é essencialmente prática: entender como os sistemas funcionam por dentro, automatizar processos, melhorar fluxos e garantir ambientes seguros, confiáveis e disponíveis.</p>
-              <p>Acredito que segurança não é apenas bloquear acessos, é garantir o acesso certo, com menor privilégio, rastreabilidade e responsabilidade. Alinhado às normas ISO/IEC 27001 e à LGPD. Atualmente estudando para a certificação CompTIA Security+.</p>
+              <p>Profissional de Segurança da Informação com foco em IAM, Blue Team e Infraestrutura.</p>
+              <p>Minha abordagem é essencialmente prática: entender como os sistemas funcionam por dentro, automatizar processos, melhorar fluxos e garantir ambientes seguros, confiáveis e disponíveis.</p>
+              <p>Acredito que segurança não é apenas bloquear acessos, é garantir o acesso certo, com menor privilégio, rastreabilidade e responsabilidade. Alinhado às normas ISO/IEC 27001 e à LGPD.</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#projetos" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-85">
